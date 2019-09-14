@@ -21,7 +21,9 @@
 */
 
 
-
+//correct
+//var examplematrix1 = [[8,1,6],[3,5,7],[4,9,2]];
+//incorrect
 var examplematrix1 = [[8,1,6],[3,5,7],[4,6,2]];
 
 
@@ -54,7 +56,7 @@ function magicsquare(matrixA){
 
     // we should only need compare each some to the last one, if there is no differnce we can continue. if we find a difference we can safely assume that we do not currently have a magic square and move on
     let sum =  0;
-    let baseline = 0;
+    let lastsum = 0;
     
     //we will use this value to control the loop
     // if we can't find a magic square we can end the loop
@@ -63,16 +65,21 @@ function magicsquare(matrixA){
     let xlimit = false;
     let ylimit = false;
 
-    //we will start with sum and baseline being the same at the start of the main loop
-    for(i = 0; i < k; i++){
-     baseline += mtx[i][0];
-    }
+    //we will start with sum and lastsum being the same at the start of the main loop
+    // for(i = 0; i < k; i++){
+    //  lastsum += mtx[i][0];
+    // }
 
-    console.log(baseline); 
+    console.log(lastsum); 
 
 
     while(tryingMagic){
     	console.log("testing: " + k);
+
+   		for(i = 0; i < k; i++){
+     		lastsum += mtx[i+xpos][0+ypos];
+    	}
+
     	sum = 0;
     	//first lets go through each row
     	for(j = 0; j < k; j++){
@@ -80,11 +87,11 @@ function magicsquare(matrixA){
     			sum += mtx[i+xpos][j+ypos];
     		}
 
-    		if(sum == baseline){
+    		if(sum == lastsum){
 				//sums equal, continue
     		}else{
     			notequal = true;
-    			console.log("not equal row " + sum + "    baseline: " + baseline);
+    			console.log("not equal row " + sum + "    lastsum: " + lastsum);
     			break;
     		}
     		//sum is reset
@@ -101,11 +108,11 @@ function magicsquare(matrixA){
     			sum += mtx[j+xpos][i+ypos];
     		}
 
-    		if(sum == baseline){
+    		if(sum == lastsum){
 				//sums equal, continue
     		}else{
     			notequal = true;
-    			console.log("not equal col " + sum + "    baseline: " + baseline);
+    			console.log("not equal col " + sum + "    lastsum: " + lastsum);
     			break;
     		}
 
@@ -121,11 +128,11 @@ function magicsquare(matrixA){
 
     		
     	}
-			if(sum == baseline){
+			if(sum == lastsum){
 				//sums equal, continue
     		}else{
     			notequal = true;
-    			console.log("not equal diag1 " + sum + "    baseline: " + baseline);
+    			console.log("not equal diag1 " + sum + "    lastsum: " + lastsum);
     		}
 
 
@@ -140,11 +147,11 @@ function magicsquare(matrixA){
     		
     	}
 
-		if(sum == baseline){
+		if(sum == lastsum){
 						//sums equal, continue
 		 }else{
 			notequal = true;
-			console.log("not equal diag2 " + sum + "    baseline: " + baseline);
+			console.log("not equal diag2 " + sum + "    lastsum: " + lastsum);
 		
 		  }
 
@@ -161,15 +168,14 @@ function magicsquare(matrixA){
     		if(xpos>0){
     			xpos--;
     		}
+
     		//if x limit is reached we move up y
     		if(ypos>0 && xlimit == true){
     			ypos--;
-
-
-
     			xpos = maxx-k;
     		}
 
+    		//if we hit the wall of the matrix
     		if(xpos==0){
     			 xlimit = true;
     		}
@@ -177,12 +183,15 @@ function magicsquare(matrixA){
     			ylimit= true;
     		}
 
+    		//if we are in the final corner of the matrix we must evaluate what to do next
     		if(xlimit == true && ylimit == true){
     			k--;
+    			//if we go below 2
     			if(k==1){
     				//we can't go any smaller
     				return 1;
     			}else{
+    				//we reset the values with the new smaller k value and restart
     				xpos = maxx-k;
     				ypos = maxy-k;
     				xlimit =false;
@@ -191,7 +200,7 @@ function magicsquare(matrixA){
 
     		}
 
-
+    		//and reset the notequal
     		notequal = false;
  		
     	}else{
