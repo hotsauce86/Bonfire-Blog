@@ -22,7 +22,7 @@
 
 
 
-var examplematrix1 = [[8,1,6],[3,5,7],[4,9,2]];
+var examplematrix1 = [[8,1,6],[3,5,7],[4,6,2]];
 
 
 function magicsquare(matrixA){
@@ -139,13 +139,14 @@ function magicsquare(matrixA){
     		//we move up j, and go forward i each step
     		
     	}
+
 		if(sum == baseline){
 						//sums equal, continue
-		    		}else{
-		    			notequal = true;
-		    			console.log("not equal diag2 " + sum + "    baseline: " + baseline);
-		    			break;
-		    		}
+		 }else{
+			notequal = true;
+			console.log("not equal diag2 " + sum + "    baseline: " + baseline);
+		
+		  }
 
 
 
