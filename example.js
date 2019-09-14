@@ -60,6 +60,8 @@ function magicsquare(matrixA){
     // if we can't find a magic square we can end the loop
     let tryingMagic = true;
     let notequal = false;
+    let xlimit = false;
+    let ylimit = false;
 
     //we will start with sum and baseline being the same at the start of the main loop
     for(i = 0; i < k; i++){
@@ -109,7 +111,7 @@ function magicsquare(matrixA){
     	//and then we check diagonals (i cant spell this late at night)
     	//diag 1
     	for(i = 0; i < k; i++){
-    		sum += mtx[i][i];
+    		sum += mtx[i+xpos][i+ypos];
 
     		if(sum == baseline){
 				//sums equal, continue
@@ -123,7 +125,7 @@ function magicsquare(matrixA){
     	//diag2
     	var tempj = k-1;
     	for(i = 0; i < k; i++){
-    		sum += mtx[i][j];
+    		sum += mtx[i+xpos][j+ypos];
     		j--;
     		//we move up j, and go forward i each step
     		if(sum == baseline){
@@ -134,21 +136,48 @@ function magicsquare(matrixA){
     		}
     	}
 
-    	
+    	//now we check to see if we have a solve
+    	// if not we see if we can move the matrix
 
+    	if(notequal){
+    		//shift over x and start again
 
+    		if(xpos>0){
+    			xpos--;
+    		}
+    		//if x limit is reached we move up y
+    		if(ypos>0 && xlimit = true){
+    			ypos--;
+    			xpos = maxx-k;
+    		}
 
-    		
+    		if(xpos==0){
+    			 xlimit = true;
+    		}
+    		if(ypos==0){
+    			ylimit= true;
+    		}
+
+    		if(xlimit == true || ylimit == true){
+    			k--;
+    			if(k==1){
+    				//we can't go any smaller
+    				return 1;
+    			}else{
+    				xpos = maxx-k;
+    				ypos = maxy-k;
+    				xlimit =false;
+    				ylimit =false;
+    			}
+
+    		}
+ 		
+    	}else{
+    		//we have a magic square
+    		return k;
+    	}		
 
     }
-
-
-
-
-
-
-
-
 
 	return k;
 }
