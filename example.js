@@ -68,8 +68,11 @@ function magicsquare(matrixA){
      baseline += mtx[i][0];
     }
 
-    while(tringMagic){
+    console.log(baseline); 
 
+
+    while(tryingMagic){
+    	console.log("testing: " + k);
     	//first lets go through each row
     	for(j = 0; j < k; j++){
     		for(i = 0; i < k; i++){
@@ -80,6 +83,7 @@ function magicsquare(matrixA){
 				//sums equal, continue
     		}else{
     			notequal = true;
+    			console.log("not equal row " + sum + "    baseline: " + baseline);
     			break;
     		}
     		//sum is reset
@@ -100,6 +104,7 @@ function magicsquare(matrixA){
 				//sums equal, continue
     		}else{
     			notequal = true;
+    			console.log("not equal col " + sum + "    baseline: " + baseline);
     			break;
     		}
 
@@ -113,13 +118,16 @@ function magicsquare(matrixA){
     	for(i = 0; i < k; i++){
     		sum += mtx[i+xpos][i+ypos];
 
-    		if(sum == baseline){
+    		
+    	}
+			if(sum == baseline){
 				//sums equal, continue
     		}else{
     			notequal = true;
-    			break;
+    			console.log("not equal diag1 " + sum + "    baseline: " + baseline);
     		}
-    	}
+
+
     	sum =0;
 
     	//diag2
@@ -128,25 +136,31 @@ function magicsquare(matrixA){
     		sum += mtx[i+xpos][j+ypos];
     		j--;
     		//we move up j, and go forward i each step
-    		if(sum == baseline){
-				//sums equal, continue
-    		}else{
-    			notequal = true;
-    			break;
-    		}
+    		
     	}
+		if(sum == baseline){
+						//sums equal, continue
+		    		}else{
+		    			notequal = true;
+		    			console.log("not equal diag2" + sum + "    baseline: " + baseline);
+		    			break;
+		    		}
+
+
+
+    	
 
     	//now we check to see if we have a solve
     	// if not we see if we can move the matrix
 
     	if(notequal){
     		//shift over x and start again
-
+    		console.log("not equal");
     		if(xpos>0){
     			xpos--;
     		}
     		//if x limit is reached we move up y
-    		if(ypos>0 && xlimit = true){
+    		if(ypos>0 && xlimit == true){
     			ypos--;
     			xpos = maxx-k;
     		}
@@ -158,7 +172,7 @@ function magicsquare(matrixA){
     			ylimit= true;
     		}
 
-    		if(xlimit == true || ylimit == true){
+    		if(xlimit == true && ylimit == true){
     			k--;
     			if(k==1){
     				//we can't go any smaller
@@ -172,12 +186,12 @@ function magicsquare(matrixA){
 
     		}
  		
-    	}else{
-    		//we have a magic square
-    		return k;
-    	}		
+    	}	
 
     }
 
 	return k;
 }
+
+
+console.log(magicsquare(examplematrix1));
