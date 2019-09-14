@@ -73,6 +73,7 @@ function magicsquare(matrixA){
 
     while(tryingMagic){
     	console.log("testing: " + k);
+    	sum = 0;
     	//first lets go through each row
     	for(j = 0; j < k; j++){
     		for(i = 0; i < k; i++){
@@ -133,8 +134,8 @@ function magicsquare(matrixA){
     	//diag2
     	var tempj = k-1;
     	for(i = 0; i < k; i++){
-    		sum += mtx[i+xpos][j+ypos];
-    		j--;
+    		sum += mtx[i+xpos][tempj+ypos];
+    		tempj--;
     		//we move up j, and go forward i each step
     		
     	}
@@ -142,18 +143,18 @@ function magicsquare(matrixA){
 						//sums equal, continue
 		    		}else{
 		    			notequal = true;
-		    			console.log("not equal diag2" + sum + "    baseline: " + baseline);
+		    			console.log("not equal diag2 " + sum + "    baseline: " + baseline);
 		    			break;
 		    		}
 
 
 
-    	
+
 
     	//now we check to see if we have a solve
     	// if not we see if we can move the matrix
 
-    	if(notequal){
+    	if(notequal == true){
     		//shift over x and start again
     		console.log("not equal");
     		if(xpos>0){
@@ -162,6 +163,9 @@ function magicsquare(matrixA){
     		//if x limit is reached we move up y
     		if(ypos>0 && xlimit == true){
     			ypos--;
+
+
+
     			xpos = maxx-k;
     		}
 
@@ -185,7 +189,12 @@ function magicsquare(matrixA){
     			}
 
     		}
+
+
+    		notequal = false;
  		
+    	}else{
+    		return k;
     	}	
 
     }
