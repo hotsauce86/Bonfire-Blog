@@ -22,9 +22,9 @@
 
 
 //correct
-//var examplematrix1 = [[8,1,6],[3,5,7],[4,9,2]];
+var examplematrix1 = [[8,1,6],[3,5,7],[4,9,2]];
 //incorrect
-var examplematrix1 = [[8,1,6],[3,5,7],[4,6,2]];
+//var examplematrix1 = [[8,1,6],[3,5,7],[4,6,2]];
 
 
 function magicsquare(matrixA){
@@ -70,7 +70,6 @@ function magicsquare(matrixA){
     //  lastsum += mtx[i][0];
     // }
 
-    console.log(lastsum); 
 
 
     while(tryingMagic){
@@ -121,6 +120,7 @@ function magicsquare(matrixA){
     			
     	}
 
+    	sum = 0;
     	//and then we check diagonals (i cant spell this late at night)
     	//diag 1
     	for(i = 0; i < k; i++){
