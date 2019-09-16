@@ -26,6 +26,10 @@ var examplematrix1 = [[8,1,6],[3,5,7],[4,9,2]];
 //incorrect
 //var examplematrix1 = [[8,1,6],[3,5,7],[4,6,2]];
 
+var examplematrix2 = [[2,2,0],[2,2,0],[0,0,0],[0,0,0]];
+
+var examplematrix3 = [[0,0,0,0],[2,2,0,0],[2,2,0,0]];
+
 
 function magicsquare(matrixA){
 
@@ -35,10 +39,13 @@ function magicsquare(matrixA){
 
 	//now let's find our the size of the given matrix
 	var gridsize = [ mtx.length, mtx[0].length ];
+
     
     //max x and y lengths
     var maxy = gridsize[0];
     var maxx = gridsize[1];
+
+    console.log("maxtrix size:   ["+ maxx + ":" + maxy +"]" );
     
 
     //we will start by fitting the max size of k to the the closest edge that a square KxK matrix can fit within the given MxN
@@ -64,6 +71,7 @@ function magicsquare(matrixA){
     let notequal = false;
     let xlimit = false;
     let ylimit = false;
+    let zerolimit =false;
 
     //we will start with sum and lastsum being the same at the start of the main loop
     // for(i = 0; i < k; i++){
@@ -73,17 +81,18 @@ function magicsquare(matrixA){
 
 
     while(tryingMagic){
-    	console.log("testing: " + k);
-
+    	console.log("testing: " + k + "    pos: [" + xpos + ":" + ypos + "]");
+    	lastsum = 0;
    		for(i = 0; i < k; i++){
-     		lastsum += mtx[i+xpos][0+ypos];
+   			console.log((i+xpos) + ":" +(0+ypos) + " -> "+ mtx[i+ypos][0+xpos]);
+     		lastsum += mtx[i+ypos][0+xpos];
     	}
 
     	sum = 0;
     	//first lets go through each row
     	for(j = 0; j < k; j++){
     		for(i = 0; i < k; i++){
-    			sum += mtx[i+xpos][j+ypos];
+    			sum += mtx[i+ypos][j+xpos];
     		}
 
     		if(sum == lastsum){
@@ -104,7 +113,7 @@ function magicsquare(matrixA){
     	//next we go by columb
     	for(j = 0; j < k; j++){
     		for(i = 0; i < k; i++){
-    			sum += mtx[j+xpos][i+ypos];
+    			sum += mtx[j+ypos][i+xpos];
     		}
 
     		if(sum == lastsum){
@@ -124,7 +133,7 @@ function magicsquare(matrixA){
     	//and then we check diagonals (i cant spell this late at night)
     	//diag 1
     	for(i = 0; i < k; i++){
-    		sum += mtx[i+xpos][i+ypos];
+    		sum += mtx[i+ypos][i+xpos];
 
     		
     	}
@@ -141,7 +150,7 @@ function magicsquare(matrixA){
     	//diag2
     	var tempj = k-1;
     	for(i = 0; i < k; i++){
-    		sum += mtx[i+xpos][tempj+ypos];
+    		sum += mtx[i+ypos][tempj+xpos];
     		tempj--;
     		//we move up j, and go forward i each step
     		
@@ -164,27 +173,37 @@ function magicsquare(matrixA){
 
     	if(notequal == true){
     		//shift over x and start again
+			//if we hit the wall of the matrix
+			if(xlimit == true && ylimit == true){
+				zerolimit =true;
+			}
+			if(xpos==0){
+    			 xlimit = true;
+    		}
+    		if(ypos==0){
+    			ylimit= true;
+    		}
     		console.log("not equal");
     		if(xpos>0){
     			xpos--;
     		}
 
+
+
+    		
+    		
+    		
+    		
     		//if x limit is reached we move up y
     		if(ypos>0 && xlimit == true){
     			ypos--;
     			xpos = maxx-k;
     		}
 
-    		//if we hit the wall of the matrix
-    		if(xpos==0){
-    			 xlimit = true;
-    		}
-    		if(ypos==0){
-    			ylimit= true;
-    		}
+    		
 
     		//if we are in the final corner of the matrix we must evaluate what to do next
-    		if(xlimit == true && ylimit == true){
+    		if(xlimit == true && ylimit == true && zerolimit ==true){
     			k--;
     			//if we go below 2
     			if(k==1){
@@ -196,6 +215,7 @@ function magicsquare(matrixA){
     				ypos = maxy-k;
     				xlimit =false;
     				ylimit =false;
+    				zerolimit =false;
     			}
 
     		}
@@ -213,4 +233,4 @@ function magicsquare(matrixA){
 }
 
 
-console.log(magicsquare(examplematrix1));
+console.log(magicsquare(examplematrix3));
