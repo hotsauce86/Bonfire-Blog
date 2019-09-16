@@ -30,6 +30,8 @@ var examplematrix2 = [[2,2,0],[2,2,0],[0,0,0],[0,0,0]];
 
 var examplematrix3 = [[0,0,0,0],[2,2,0,0],[2,2,0,0]];
 
+var examplematrix4 = [[0,0,0,0],[2,1,0,1],[2,2,0,1],[0,1,0,0]];
+
 
 function magicsquare(matrixA){
 
@@ -198,6 +200,7 @@ function magicsquare(matrixA){
     		if(ypos>0 && xlimit == true){
     			ypos--;
     			xpos = maxx-k;
+    			xlimit = false;
     		}
 
     		
@@ -233,4 +236,4 @@ function magicsquare(matrixA){
 }
 
 
-console.log(magicsquare(examplematrix3));
+console.log(magicsquare(examplematrix4));
