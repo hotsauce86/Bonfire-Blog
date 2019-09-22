@@ -18,14 +18,24 @@
 */
 
 //correct
-var examplematrix1 = [[8,1,6],[3,5,7],[4,9,2]];
+var examplematrix1 = [[8,1,6],
+                      [3,5,7],
+                      [4,9,2]];
 //incorrect
 //var examplematrix1 = [[8,1,6],[3,5,7],[4,6,2]];
-var examplematrix2 = [[2,2,0],[2,2,0],[0,0,0],[0,0,0]];
+var examplematrix2 = [[2,2,0],
+                      [2,2,0],
+                      [0,0,0],
+                      [0,0,0]];
 
-var examplematrix3 = [[0,0,0,0],[2,2,0,0],[2,2,0,0]];
+var examplematrix3 = [[0,0,0,0],
+                      [2,2,0,0],
+                      [2,2,0,0]];
 
-var examplematrix4 = [[0,0,0,0],[2,1,0,1],[2,2,0,1],[0,1,0,0]];
+var examplematrix4 = [[0,0,0,0],
+                      [2,2,0,1],
+                      [2,2,0,1],
+                      [0,1,0,0]];
 
 
 function magicsquare(matrixA){
@@ -78,7 +88,7 @@ function magicsquare(matrixA){
     		for(i = 0; i < k; i++){
     			sum += mtx[i+ypos][j+xpos];
     		}
-    		if(sum == lastsum){
+    		if(sum === lastsum){
 				//sums equal, continue
     		}else{
     			notequal = true;
@@ -94,7 +104,7 @@ function magicsquare(matrixA){
     		for(i = 0; i < k; i++){
     			sum += mtx[j+ypos][i+xpos];
     		}
-    		if(sum == lastsum){
+    		if(sum === lastsum){
 				//sums equal, continue
     		}else{
     			notequal = true;
@@ -111,7 +121,7 @@ function magicsquare(matrixA){
     	for(i = 0; i < k; i++){
     		sum += mtx[i+ypos][i+xpos];	
     	}
-			if(sum == lastsum){
+			if(sum === lastsum){
 				//sums equal, continue
     		}else{
     			notequal = true;
@@ -128,7 +138,7 @@ function magicsquare(matrixA){
     		
     	}
 
-		if(sum == lastsum){
+		if(sum === lastsum){
 		//sums equal, continue
 		 }else{
 			notequal = true;
@@ -137,16 +147,16 @@ function magicsquare(matrixA){
 
     	//now we check to see if we have a solve
     	// if not we see if we can move the matrix
-    	if(notequal == true){
+    	if(notequal === true){
     		//shift over x and start again
 			//if we hit the wall of the matrix
-			if(xlimit == true && ylimit == true){
+			if(xlimit === true && ylimit === true){
 				zerolimit =true;
 			}
-			if(xpos==0){
+			if(xpos===0){
     			 xlimit = true;
     		}
-    		if(ypos==0){
+    		if(ypos===0){
     			ylimit= true;
     		}
     		console.log("not equal");
@@ -155,17 +165,17 @@ function magicsquare(matrixA){
     		}
 
     		//if x limit is reached we move up y
-    		if(ypos>0 && xlimit == true){
+    		if(ypos>0 && xlimit === true){
     			ypos--;
     			xpos = maxx-k;
     			xlimit = false;
     		}
 
     		//if we are in the final corner of the matrix we must evaluate what to do next
-    		if(xlimit == true && ylimit == true && zerolimit ==true){
+    		if(xlimit === true && ylimit === true && zerolimit === true){
     			k--;
     			//if we go below 2
-    			if(k==1){
+    			if(k===1){
     				//we can't go any smaller
     				return 1;
     			}else{
@@ -189,4 +199,4 @@ function magicsquare(matrixA){
 	return k;
 }
 
-console.log(magicsquare(examplematrix3));
+console.log(magicsquare(examplematrix4));

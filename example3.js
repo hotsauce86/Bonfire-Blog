@@ -11,13 +11,37 @@ console.log(body);
 console.log("hello");
 
 function setGradient(){
-	body.style.background = "linear-gradient(to right, " + color1.value + ", " +color2.value + ")";
+	body.style.background = 
+	"linear-gradient(to right, " + 
+	color1.value + 
+	", " +
+	color2.value + ")";
+
 	css.textContent = body.style.background + ";";
 }
 
 //let setGradient = () => body.style.background = `"linear-gradient(to right, ${color1.value}, ${color2.value} )"`;
 
 
-color1.addEventListener("input", setGradient(color1, color2));
+color1.addEventListener("input", setGradient);
 
-color2.addEventListener("input", setGradient(color1, color2));
+color2.addEventListener("input", setGradient);
+
+
+let obj  = {
+
+	 a: 'a',
+	 b: 'b', 
+	 c: {
+	 	deep: 'a new object, not a value'
+	 }
+}
+let copyobj = obj;
+let supercopy = JSON.parse(JSON.stringify(obj));
+
+obj.c = "new value";
+console.log(obj);
+
+console.log(copyobj);
+
+console.log(supercopy);
