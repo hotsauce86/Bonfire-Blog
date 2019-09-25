@@ -45,3 +45,9 @@ console.log(obj);
 console.log(copyobj);
 
 console.log(supercopy);
+
+
+const adder = (a,b) => a + b;
+
+
+console.log(adder(3,5));
