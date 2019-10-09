@@ -26,10 +26,11 @@ var examplematrix1 = [[8,1,6],
 var examplematrix2 = [[2,2,0],
                       [2,2,0],
                       [0,0,0],
-                      [0,0,0]];
+                      [0,1,0],
+                      [0,1,0]];
 
 var examplematrix3 = [[0,0,0,0],
-                      [2,2,0,0],
+                      [2,2,3,0],
                       [2,2,0,0]];
 
 var examplematrix4 = [[0,0,0,0],
